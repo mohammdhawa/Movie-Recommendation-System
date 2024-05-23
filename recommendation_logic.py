@@ -83,9 +83,6 @@ def get_movie_detail(movie_id):
 def fetch_poster(movie_id):
     response = requests.get(
         f"https://api.themoviedb.org/3/movie/{movie_id}?api_key=2646356451a5c6c0d4606b0ccb8a0b0a&language=en-US")
-    "https://api.themoviedb.org/3/movie/557/similar?api_key=2646356451a5c6c0d4606b0ccb8a0b0a&language=en-US&page=1"
-    "https://api.themoviedb.org/3/movie/557/credits?api_key=2646356451a5c6c0d4606b0ccb8a0b0a&language=en-US&page=1"
-    "https://api.themoviedb.org/3/person/210050/images?api_key=2646356451a5c6c0d4606b0ccb8a0b0a&language=en-US"
     movie_poster = response.json()
     return "https://image.tmdb.org/t/p/w500/" + movie_poster['poster_path']
 
