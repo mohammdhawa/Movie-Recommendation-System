@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="db621a84-2ced-468e-a287-21b6ce5976af" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/content_based.pkl" beforeDir="false" afterPath="$PROJECT_DIR$/content_based.pkl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movies/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movies/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movies/templates/movies/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/movies/templates/movies/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/movies/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/movies/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/movies/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/movies/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/recommendation_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/recommendation_logic.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +96,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1716462201590</updated>
-      <workItem from="1716462207545" duration="8164000" />
+      <workItem from="1716462207545" duration="20526000" />
     </task>
     <servers />
   </component>

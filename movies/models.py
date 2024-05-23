@@ -49,7 +49,6 @@ class Movie(models.Model):
         return False
 
 
-
 class Genre(models.Model):
     name = models.CharField(max_length=255)
 

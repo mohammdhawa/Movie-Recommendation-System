@@ -12,7 +12,7 @@
                     <div class="row hero-area-slide">
 						<div class="col-lg-6 col-md-5">
 							<div class="hero-area-content">
-								<img src="{{movie.image}}" alt="about" style="height: 500px; width: 350px" />
+								<img src="{{movie.image.url}}" alt="about" style="height: 500px; width: 350px" />
 							</div>
 						</div>
 						<div class="col-lg-6 col-md-7">
@@ -27,25 +27,19 @@
 										<i class="icofont icofont-star"></i>
 									</div>
 									<h4>{{ movie.vote_count }}k voters</h4>
+                                    <h4>{{ movie.vote_average }}</h4>
 								</div>
 								<p>{{ movie.overview }}</p>
 								<h3>Cast:</h3>
-								<div class="slide-cast">
-
-									<div class="single-slide-cast" style="width: 50px; height: 50px;">
-										<img src="{{movie.actor_1}}" alt="about" width="50" height="50" />
+								<div class="slide-cast"">
+                                    {% for actor in movie.actors.all %}
+									<div class="single-slide-cast m-1" style="width: 50px; height: 100px;">
+										<img src="{{actor.image.url}}" alt="about" style="border-radius: 20%"/>
 									</div>
-                                    <div class="single-slide-cast" style="width: 50px; height: 50px;">
-										<img src="" alt="about" />
-									</div>
-                                    <div class="single-slide-cast" style="width: 50px; height: 50px;">
-										<img src="" alt="about" />
-									</div>
-
+                                    {% endfor %}
 								</div>
 								<div class="slide-trailor">
-									<h3>Watch Trailer</h3>
-									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+
 								</div>
 							</div>
 						</div>
