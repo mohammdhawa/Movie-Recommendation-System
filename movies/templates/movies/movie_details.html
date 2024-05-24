@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+		<!-- breadcrumb area start -->
+		<section class="breadcrumb-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="breadcrumb-area-content">
+							<h1>Movie Detalied Page</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- breadcrumb area end -->
+		<!-- transformers area start -->
+		<section class="transformers-area">
+			<div class="container">
+				<div class="transformers-box">
+					<div class="row flexbox-center">
+						<div class="col-lg-5 text-lg-left text-center">
+							<div class="transformers-content">
+								<img src="{{ object.image.url }}" alt="about" />
+							</div>
+						</div>
+						<div class="col-lg-7">
+							<div class="transformers-content">
+								<h2>{{object.title}}</h2>
+                                <p>
+                                    {% for genre in object.genres.all %}
+                                        {{ genre }} |
+                                    {% endfor %}
+                                </p>
+								<ul>
+									<li>
+										<div class="transformers-left">
+											Director:
+										</div>
+										<div class="transformers-right">
+                                            {{ object.director }}
+										</div>
+									</li>
+                                    <li>
+										<div class="transformers-left">
+											Vote Average:
+										</div>
+										<div class="transformers-right">
+											{{ object.vote_average }}
+										</div>
+									</li>
+                                    <li>
+										<div class="transformers-left">
+											Vote Count:
+										</div>
+										<div class="transformers-right">
+											{{ object.vote_count }}
+										</div>
+									</li>
+                                    <li>
+										<div class="transformers-left">
+											Running Time:
+										</div>
+										<div class="transformers-right">
+											{{ object.runtime }}m
+										</div>
+									</li>
+									<li>
+										<div class="transformers-left">
+											Production Country:
+										</div>
+										<div class="transformers-right">
+											&nbsp;{{ object.production_country }}
+										</div>
+									</li>
+
+
+									<li>
+										<div class="transformers-left">
+											Release:
+										</div>
+										<div class="transformers-right">
+                                            {{ object.release_date }}
+										</div>
+									</li>
+									<li>
+										<div class="transformers-left">
+											Language:
+										</div>
+										<div class="transformers-right">
+											{{ object.language }}
+										</div>
+									</li>
+
+									<li>
+										<div class="transformers-left">
+											Share:
+										</div>
+										<div class="transformers-right">
+											<a href="www.facebook.com" target="_blank"><i class="icofont icofont-social-facebook"></i></a>
+											<a href="www.x.com" target="_blank"><i class="icofont icofont-social-twitter"></i></a>
+											<a href="www.instagram.com" target="_blank"><i class="icofont icofont-social-instagram"></i></a>
+											<a href="www.youtube.com" target="_blank"><i class="icofont icofont-youtube-play"></i></a>
+										</div>
+									</li>
+								</ul>
+                                <h3>Cast:</h3>
+								<div class="slide-cast"">
+                                    {% for actor in object.actors.all %}
+									<div class="single-slide-cast m-1" style="width: 50px; height: 100px;">
+										<img src="{{actor.image.url}}" alt="about" style="border-radius: 20%"/>
+									</div>
+                                    {% endfor %}
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section><!-- transformers area end -->
+		<!-- details area start -->
+		<section class="details-area">
+			<div class="container">
+				<div class="row">
+{#                    <div class="col-lg-1"></div>#}
+					<div class="col-lg-12">
+						<div class="details-content">
+							<div class="details-overview">
+								<h2>Overview</h2>
+								<p>{{ object.overview }}</p>
+							</div>
+							<div class="details-reply">
+								<h2>Leave a Reply</h2>
+								<form action="#">
+									<div class="row">
+										<div class="col-lg-4">
+											<div class="select-container">
+												<input type="text" placeholder="Name"/>
+												<i class="icofont icofont-ui-user"></i>
+											</div>
+										</div>
+										<div class="col-lg-4">
+											<div class="select-container">
+												<input type="text" placeholder="Email"/>
+												<i class="icofont icofont-envelope"></i>
+											</div>
+										</div>
+										<div class="col-lg-4">
+											<div class="select-container">
+												<input type="text" placeholder="Phone"/>
+												<i class="icofont icofont-phone"></i>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<div class="textarea-container">
+												<textarea placeholder="Type Here Message"></textarea>
+												<button><i class="icofont icofont-send-mail"></i></button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+{#                    <div class="col-lg-1"></div>#}
+				</div>
+			</div>
+		</section><!-- details area end -->
+
+
+{% endblock content %}

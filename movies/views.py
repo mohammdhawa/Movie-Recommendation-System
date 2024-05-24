@@ -4,8 +4,7 @@ from .models import Movie, Actor, Genre
 from recommendation_logic import (recommend_movies4, fetch_poster,
                                   get_movie_detail, get_actor_id_by_name,
                                   fetch_actor_profile)
-import random
-from faker import Faker
+from django.db.models import Q
 
 
 class MovieListView(ListView):
@@ -17,7 +16,10 @@ class MovieListView(ListView):
         return Movie.objects.all()[:10]
 
 
-from django.db.models import Q
+class MovieDetailView(DetailView):
+    model = Movie
+    template_name = 'movies/movie_details.html'
+
 
 def search(request):
     if request.method == 'POST':
@@ -36,7 +38,8 @@ def search(request):
                     for i in range(1, 4):
                         if movie_detail[f"actor_{i}"]:
                             actor_name = movie_detail[f"actor_{i}"]
-                            actor, created = Actor.objects.get_or_create(name=actor_name, defaults={'image_url': fetch_actor_profile(get_actor_id_by_name(actor_name))})
+                            actor, created = Actor.objects.get_or_create(name=actor_name, defaults={
+                                'image_url': fetch_actor_profile(get_actor_id_by_name(actor_name))})
                             if created:
                                 actor.save_image_from_url()
                             movie_actors.append(actor)
@@ -54,7 +57,7 @@ def search(request):
                         release_date=f"{movie_detail['release_date']}-01-01",
                         language=movie_detail['original_language'],
                         vote_average=movie_detail['vote_average'],
-                        vote_count=movie_detail['vote_count']//1000,
+                        vote_count=movie_detail['vote_count'] // 1000,
                         overview=movie_detail['overview'],
                         image_url=movie_poster,
                         tmdb_id=movie_id
@@ -72,4 +75,3 @@ def search(request):
             return render(request, 'movies/search.html', {'searched': searched})
     else:
         return render(request, 'movies/search.html', {})
-
