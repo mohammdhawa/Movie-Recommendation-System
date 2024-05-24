@@ -19,26 +19,42 @@
                                 <h2><a href="{% url 'movie_detail' movie.id %}">{{ movie.title}}</a></h2>
 								<div class="review">
 									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
+                                        {% if movie.vote_average > 9 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 8 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 6 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 4 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 2 %}
+                                            <i class="icofont icofont-star"></i>
+                                        {% endif %}
+
 									</div>
-									<h4>180k voters</h4>
+                                    <h4>{{ movie.vote_count }}k voters</h4>
 								</div>
 								<p>{{ movie.overview }}</p>
 								<h3>Cast:</h3>
-								<div class="slide-cast">
-									{% for actor in movie.actors.all %}
-									<div class="single-slide-cast" style="width: 50px; height: 50px;">
-										<img src="{{actor.image.url}}" alt="about" width="50" height="50" />
+								<div class="slide-cast"">
+                                    {% for actor in movie.actors.all %}
+									<div class="single-slide-cast m-1" style="width: 50px; height: 100px;">
+										<img src="{{actor.image.url}}" alt="about" style="border-radius: 20%"/>
 									</div>
                                     {% endfor %}
 								</div>
 								<div class="slide-trailor">
-									<h3>Watch Trailer</h3>
-									<a class="theme-btn theme-btn2" href="#"><i class="icofont icofont-play"></i> Tickets</a>
+
 								</div>
 							</div>
 						</div>
@@ -64,6 +80,7 @@
 											<i class="icofont icofont-star"></i>
 											<i class="icofont icofont-star"></i>
 											<i class="icofont icofont-star"></i>
+
 										</div>
 										<h4>180k voters</h4>
 									</div>
@@ -162,180 +179,122 @@
 				</div>
 			</div>
 		</section><!-- hero area end -->
-		<!-- portfolio section start -->
-{#		<section class="portfolio-area pt-60">#}
-{#			<div class="container">#}
-{#				<div class="row flexbox-center">#}
-{#					<div class="col-lg-6 text-center text-lg-left">#}
-{#					    <div class="section-title">#}
-{#							<h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>#}
-{#						</div>#}
-{#					</div>#}
-{#					<div class="col-lg-6 text-center text-lg-right">#}
-{#					    <div class="portfolio-menu">#}
-{#							<ul>#}
-{#								<li data-filter="*" class="active">Latest</li>#}
-{#								<li data-filter=".soon">Comming Soon</li>#}
-{#								<li data-filter=".top">Top Rated</li>#}
-{#								<li data-filter=".released">Recently Released</li>#}
-{#							</ul>#}
-{#						</div>#}
-{#					</div>#}
-{#				</div>#}
-{#				<hr />#}
-{#				<div class="row">#}
-{#					<div class="col-lg-9">#}
-{#						<div class="row portfolio-item">#}
-{#							<div class="col-md-4 col-sm-6 soon released">#}
-{#								<div class="single-portfolio">#}
-{#									<div class="single-portfolio-img">#}
-{#										<img src="assets/img/portfolio/portfolio1.png" alt="portfolio" />#}
-{#										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">#}
-{#											<i class="icofont icofont-ui-play"></i>#}
-{#										</a>#}
-{#									</div>#}
-{#									<div class="portfolio-content">#}
-{#										<h2>Boyz II Men</h2>#}
-{#										<div class="review">#}
-{#											<div class="author-review">#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#											</div>#}
-{#											<h4>180k voters</h4>#}
-{#										</div>#}
-{#									</div>#}
-{#								</div>#}
-{#							</div>#}
-{#							<div class="col-md-4 col-sm-6 top">#}
-{#								<div class="single-portfolio">#}
-{#									<div class="single-portfolio-img">#}
-{#										<img src="assets/img/portfolio/portfolio2.png" alt="portfolio" />#}
-{#										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">#}
-{#											<i class="icofont icofont-ui-play"></i>#}
-{#										</a>#}
-{#									</div>#}
-{#									<div class="portfolio-content">#}
-{#										<h2>Tale of Revemge</h2>#}
-{#										<div class="review">#}
-{#											<div class="author-review">#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#											</div>#}
-{#											<h4>180k voters</h4>#}
-{#										</div>#}
-{#									</div>#}
-{#								</div>#}
-{#							</div>#}
-{#							<div class="col-md-4 col-sm-6 soon">#}
-{#								<div class="single-portfolio">#}
-{#									<div class="single-portfolio-img">#}
-{#										<img src="assets/img/portfolio/portfolio3.png" alt="portfolio" />#}
-{#										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">#}
-{#											<i class="icofont icofont-ui-play"></i>#}
-{#										</a>#}
-{#									</div>#}
-{#									<div class="portfolio-content">#}
-{#										<h2>The Lost City of Z</h2>#}
-{#										<div class="review">#}
-{#											<div class="author-review">#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#											</div>#}
-{#											<h4>180k voters</h4>#}
-{#										</div>#}
-{#									</div>#}
-{#								</div>#}
-{#							</div>#}
-{#							<div class="col-md-4 col-sm-6 top released">#}
-{#								<div class="single-portfolio">#}
-{#									<div class="single-portfolio-img">#}
-{#										<img src="assets/img/portfolio/portfolio4.png" alt="portfolio" />#}
-{#										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">#}
-{#											<i class="icofont icofont-ui-play"></i>#}
-{#										</a>#}
-{#									</div>#}
-{#									<div class="portfolio-content">#}
-{#										<h2>Beast Beauty</h2>#}
-{#										<div class="review">#}
-{#											<div class="author-review">#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#											</div>#}
-{#											<h4>180k voters</h4>#}
-{#										</div>#}
-{#									</div>#}
-{#								</div>#}
-{#							</div>#}
-{#							<div class="col-md-4 col-sm-6 released">#}
-{#								<div class="single-portfolio">#}
-{#									<div class="single-portfolio-img">#}
-{#										<img src="assets/img/portfolio/portfolio5.png" alt="portfolio" />#}
-{#										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">#}
-{#											<i class="icofont icofont-ui-play"></i>#}
-{#										</a>#}
-{#									</div>#}
-{#									<div class="portfolio-content">#}
-{#										<h2>In The Fade</h2>#}
-{#										<div class="review">#}
-{#											<div class="author-review">#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#											</div>#}
-{#											<h4>180k voters</h4>#}
-{#										</div>#}
-{#									</div>#}
-{#								</div>#}
-{#							</div>#}
-{#							<div class="col-md-4 col-sm-6 soon top">#}
-{#								<div class="single-portfolio">#}
-{#									<div class="single-portfolio-img">#}
-{#										<img src="assets/img/portfolio/portfolio6.png" alt="portfolio" />#}
-{#										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">#}
-{#											<i class="icofont icofont-ui-play"></i>#}
-{#										</a>#}
-{#									</div>#}
-{#									<div class="portfolio-content">#}
-{#										<h2>Last Hero</h2>#}
-{#										<div class="review">#}
-{#											<div class="author-review">#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#												<i class="icofont icofont-star"></i>#}
-{#											</div>#}
-{#											<h4>180k voters</h4>#}
-{#										</div>#}
-{#									</div>#}
-{#								</div>#}
-{#							</div>#}
-{#						</div>#}
-{#					</div>#}
-{#					<div class="col-lg-3 text-center text-lg-left">#}
-{#					    <div class="portfolio-sidebar">#}
-{#							<img src="assets/img/sidebar/sidebar1.png" alt="sidebar" />#}
-{#							<img src="assets/img/sidebar/sidebar2.png" alt="sidebar" />#}
-{#							<img src="assets/img/sidebar/sidebar3.png" alt="sidebar" />#}
-{#							<img src="assets/img/sidebar/sidebar4.png" alt="sidebar" />#}
-{#						</div>#}
-{#					</div>#}
-{#				</div>#}
-{#			</div>#}
-{#		</section><!-- portfolio section end -->#}
+
+
+
+    <!-- portfolio section start -->
+		<section class="portfolio-area pt-60">
+			<div class="container">
+				<div class="row flexbox-center">
+					<div class="col-lg-6 text-center text-lg-left">
+					    <div class="section-title">
+							<h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+						</div>
+					</div>
+					<div class="col-lg-6 text-center text-lg-right">
+					    <div class="portfolio-menu">
+							<ul>
+								<li data-filter=".*" class="active">All</li>
+                                <li data-filter=".last">Latest</li>
+								<li data-filter=".top">Top Rated</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="row portfolio-item">
+                            {% for movie in last_movies %}
+                            <div class="col-md-4 col-sm-6 last">
+								<div class="single-portfolio">
+									<div class="single-portfolio-img">
+										<img src="{{ movie.image.url }}" alt="portfolio" />
+										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+											<i class="icofont icofont-ui-play"></i>
+										</a>
+									</div>
+									<div class="portfolio-content">
+                                        <h2><a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a></h2>
+										<div class="review">
+											<div class="author-review">
+												{% if movie.vote_average > 9 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 8 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 6 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 4 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 2 %}
+                                            <i class="icofont icofont-star"></i>
+                                        {% endif %}
+											</div>
+											<h4>{{ movie.vote_count }}k voters</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+                            {% endfor %}
+
+                        {% for movie in top_rated %}
+                            <div class="col-md-4 col-sm-6 top">
+								<div class="single-portfolio">
+									<div class="single-portfolio-img">
+										<img src="{{ movie.image.url }}" alt="portfolio" />
+										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+											<i class="icofont icofont-ui-play"></i>
+										</a>
+									</div>
+									<div class="portfolio-content">
+                                        <h2><a href="{% url 'movie_detail' movie.id %}">{{ movie.title }}</a></h2>
+										<div class="review">
+											<div class="author-review">
+												{% if movie.vote_average > 9 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 8 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 6 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 4 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 2 %}
+                                            <i class="icofont icofont-star"></i>
+                                        {% endif %}
+											</div>
+											<h4>{{ movie.vote_count }}k voters</h4>
+										</div>
+									</div>
+								</div>
+							</div>
+                            {% endfor %}
+
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section><!-- portfolio section end -->
 
 {% endblock content %}

@@ -13,7 +13,13 @@ class MovieListView(ListView):
 
     def get_queryset(self):
         # Retrieve only the first 10 movies
-        return Movie.objects.all()[:10]
+        return Movie.objects.all().order_by('-vote_average')[:3]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["last_movies"] = Movie.objects.all().order_by('-release_date')[:6]
+        context['top_rated'] = Movie.objects.all().order_by('-vote_average')[:6]
+        return context
 
 
 class MovieDetailView(DetailView):
