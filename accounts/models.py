@@ -11,6 +11,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='user.png', upload_to='users', blank=True, null=True)
     watched_movies = models.ManyToManyField(Movie, related_name='watched_by', blank=True)
+    get_user_id_from_dataset = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return str(self.user)

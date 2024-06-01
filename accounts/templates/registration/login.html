@@ -1,28 +1,45 @@
-{% extends "base_generic.html" %}
+{% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
 
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
+    <!-- breadcrumb area start -->
+		<section class="breadcrumb-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="breadcrumb-area-content">
+							{% if form.errors %}
+                        <p>Your username and password didn't match. Please try again.</p>
+                    {% endif %}
 
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
-    {% endif %}
-  {% endif %}
+                    {% if next %}
+                        {% if user.is_authenticated %}
+                            <p>Your account doesn't have access to this page. To proceed,
+                            please login with an account that has access.</p>
+                        {% else %}
+                            <p>Please login to see this page.</p>
+                        {% endif %}
+                    {% endif %}
 
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-      {{ form }}
-    <input type="submit" value="login">
-    <input type="hidden" name="next" value="{{ next }}">
-  </form>
+                      <form method="post" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        {% bootstrap_form form %}
 
-  {# Assumes you set up the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+                        <input class="btn btn-primary" type="submit" value="login">
+                        <input type="hidden" name="next" value="{{ next }}">
+                      </form>
 
-{% endblock %}
+                    {# Assumes you set up the password_reset view in your URLconf #}
+                    <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section><!-- breadcrumb area end -->
+		<!-- portfolio section start -->
+
+
+
+
+{% endblock content %}
