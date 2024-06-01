@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # I put it here in order to get the priority when puting link related to this app
+    "accounts.apps.AccountsConfig"
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My Apps
-    "movies.apps.MoviesConfig"
+    "movies.apps.MoviesConfig",
 ]
 
 MIDDLEWARE = [
