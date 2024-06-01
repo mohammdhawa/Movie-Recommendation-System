@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .profile-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+        }
+        .profile-container img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .profile-container h1 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        .profile-container p {
+            color: #666;
+            font-size: 16px;
+        }
+        .profile-container .social-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #666;
+        }
+        .profile-container .social-links a:hover {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h2>Edit Profile</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ userform }}
+            {{ profileform }}
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</body>
+</html>

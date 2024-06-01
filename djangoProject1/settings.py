@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # My Package
+    "bootstrap5",
+    
     # My Apps
     "movies.apps.MoviesConfig",
 ]
