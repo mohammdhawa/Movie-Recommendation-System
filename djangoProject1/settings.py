@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     # I put it here in order to get the priority when puting link related to this app
-    "accounts.apps.AccountsConfig"
+    "accounts.apps.AccountsConfig",
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 
     # My Package
     "bootstrap5",
-    
+
     # My Apps
     "movies.apps.MoviesConfig",
 ]
