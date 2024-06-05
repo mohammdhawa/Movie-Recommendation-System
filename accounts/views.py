@@ -24,8 +24,9 @@ def signup(request):
 
 def profile(request):
     profile = Profile.objects.get(user=request.user)
+    watched_movies = profile.watched_movies.all()
 
-    context = {'profile': profile}
+    context = {'profile': profile, 'watched_movies': watched_movies}
     return render(request, 'accounts/profile.html', context)
 
 

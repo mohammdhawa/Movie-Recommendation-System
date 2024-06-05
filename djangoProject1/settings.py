@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # My Package
     "bootstrap5",
+    'django_extensions',
 
     # My Apps
     "movies.apps.MoviesConfig",
@@ -139,3 +140,9 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+GRAPH_MODELS ={
+'all_applications': True,
+'graph_models': True,
+}

@@ -27,6 +27,7 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+    
 	</head>
 	<body>
 		<!-- Page loader -->
@@ -36,30 +37,32 @@
 			<div class="container">
 				<div class="header-area">
 					<div class="logo">
-						<a href="index-2.html"><img src="{% static 'assets/img/logo.png' %}" alt="logo" /></a>
+						<a href="{% url 'home' %}"><img src="{% static 'assets/img/logo.png' %}" alt="logo" /></a>
 					</div>
 					<div class="header-right">
 						<form action="{% url 'search' %}" method="post">
                             {% csrf_token %}
 							<select>
 								<option value="Movies">Movies</option>
-								<option value="Movies">Movies</option>
-								<option value="Movies">Movies</option>
 							</select>
-							<input type="text" name="searched"/>
-							<button><i class="icofont icofont-search"></i></button>
+							<input type="text" name="searched" placeholder="Search..."/>
+							
 						</form>
 						<ul>
-							<li><a href="#">Welcome Guest!</a></li>
-							<li><a class="login-popup" href="#">Login</a></li>
+							{% if user.is_authenticated %}
+                                <li><a href="{% url 'profile' %}">Profile</a></li>
+                                <li><a href="{% url 'logout' %}">Logout</a></li>
+                            {% else %}
+                                <li><a class="login-popup" href="{% url 'login' %}">Login</a></li>
+                            {% endif %}
 						</ul>
 					</div>
 					<div class="menu-area">
 						<div class="responsive-menu"></div>
 					    <div class="mainmenu">
                             <ul id="primary-menu">
-                                <li><a class="active" href="index-2.html">Home</a></li>
-                                <li><a href="movies.html">Movies</a></li>
+                                <li><a class="active" href="{% url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'profile' %}">Movies</a></li>
                                 <li><a href="top-movies.html">Top Movies</a></li>
 								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
 									<ul>
@@ -67,7 +70,7 @@
 										<li><a href="movie-details.html">Movie Details</a></li>
 									</ul>
 								</li>
-                                <li><a class="theme-btn" href="#"><i class="icofont icofont-ticket"></i> Tickets</a></li>
+                                
                             </ul>
 					    </div>
 					</div>
@@ -78,11 +81,12 @@
 			<div class="login-box">
 				<a href="#"><i class="icofont icofont-close"></i></a>
 				<h2>LOGIN</h2>
-				<form action="#">
-					<h6>USERNAME OR EMAIL ADDRESS</h6>
-					<input type="text" />
+				<form id="login-form" method="post">
+                    {% csrf_token %}
+					<h6>USERNAME</h6>
+					<input type="text" name="username" />
 					<h6>PASSWORD</h6>
-					<input type="text" />
+					<input type="password" name="password" />
 					<div class="login-remember">
 						<input type="checkbox" />
 						<span>Remember Me</span>
@@ -90,7 +94,7 @@
 					<div class="login-signup">
 						<span>SIGNUP</span>
 					</div>
-					<a href="#" class="theme-btn">LOG IN</a>
+					<button type="button" class="theme-btn" onclick="login()">LOG IN</button>
 					<span>Or Via Social</span>
 					<div class="login-social">
 						<a href="#"><i class="icofont icofont-social-facebook"></i></a>
@@ -403,6 +407,11 @@
 			</div>
 		</footer><!-- footer section end -->
 		<!-- jquery main JS -->
+        <script>
+            function login() {
+                document.getElementById("login-form").submit();
+            }
+        </script>
 		<script src="{% static 'assets/js/jquery.min.js' %}"></script>
 		<!-- Bootstrap JS -->
 		<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>

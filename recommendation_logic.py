@@ -2,11 +2,11 @@ import pandas as pd
 import pickle
 import requests
 
-import django
-import os
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
-django.setup()
+# import django
+# import os
+#
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoProject1.settings')
+# django.setup()
 
 path = "content_based.pkl"
 
@@ -106,3 +106,4 @@ def fetch_actor_profile(actor_id):
 # print(fetch_poster(mytest[0]))
 # print(get_movie_detail(mytest[0]))
 # print(mytest)
+# print("Hello fucking world2")
