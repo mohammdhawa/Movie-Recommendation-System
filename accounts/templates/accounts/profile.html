@@ -54,14 +54,32 @@
 								</a>
 							</div>
 							<div class="portfolio-content">
-								<h2>{{ movie.title }}</h2>
+								<h2><a href="{% url 'movie_detail' movie.id %}">{{ movie.title | truncatechars:13 }}</a></h2>
 								<div class="review">
 									<div class="author-review">
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
-										<i class="icofont icofont-star"></i>
+										<div class="author-review">
+												{% if movie.vote_average > 9 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 8 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 6 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 4 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 2 %}
+                                            <i class="icofont icofont-star"></i>
+                                        {% endif %}
+											</div>
 									</div>
 									<h4>{{ movie.vote_count }}k voters</h4>
 								</div>
