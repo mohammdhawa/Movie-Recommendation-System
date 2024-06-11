@@ -63,8 +63,8 @@ def watched_movies(user_id):
         return None
 
 
-def helper(user_id, top_n=10):
-    recommended = recommend_movies(10, best_svd_model, ratings, top_n=10)
+def helper(user_id, top_n=12):
+    recommended = recommend_movies(user_id, best_svd_model, ratings, top_n=top_n)
     tmdb_ids = [get_tmdb_id_by_movieId(x) for x in recommended]
     return tmdb_ids
 

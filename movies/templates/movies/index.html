@@ -9,6 +9,13 @@
 </div>
 </div>
 
+<div class="container mt-4">
+<div class="row flexbox-center">
+    <div class="mt-4">
+
+</div>
+</div>
+
 </div>
 
 
@@ -86,16 +93,12 @@
 				<div class="row flexbox-center">
 					<div class="col-lg-6 text-center text-lg-left">
 					    <div class="section-title">
-							<h1><i class="icofont icofont-movie"></i> Spotlight This Month</h1>
+							<h1><i class="icofont icofont-movie"></i> Latest Movies</h1>
 						</div>
 					</div>
 					<div class="col-lg-6 text-center text-lg-right">
 					    <div class="portfolio-menu">
-							<ul>
-								<li data-filter=".*" class="active">All</li>
-                                <li data-filter=".last">Latest</li>
-								<li data-filter=".top">Top Rated</li>
-							</ul>
+
 						</div>
 					</div>
 				</div>
@@ -104,7 +107,7 @@
 					<div class="col-lg-12">
 						<div class="row portfolio-item">
                             {% for movie in last_movies %}
-                            <div class="col-md-4 col-sm-6 last">
+                            <div class="col-md-4 col-sm-6">
 								<div class="single-portfolio">
 									<div class="single-portfolio-img">
 										<img src="{{ movie.image.url }}" alt="portfolio" />
@@ -114,48 +117,6 @@
 									</div>
 									<div class="portfolio-content">
                                         <h2><a href="{% url 'movie_detail' movie.id %}">{{ movie.title | truncatechars:20 }}</a></h2>
-										<div class="review">
-											<div class="author-review">
-												{% if movie.vote_average > 9 %}
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                        {% elif movie.vote_average > 8 %}
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                        {% elif movie.vote_average > 6 %}
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                        {% elif movie.vote_average > 4 %}
-                                            <i class="icofont icofont-star"></i>
-                                            <i class="icofont icofont-star"></i>
-                                        {% elif movie.vote_average > 2 %}
-                                            <i class="icofont icofont-star"></i>
-                                        {% endif %}
-											</div>
-											<h4>{{ movie.vote_count }}k voters</h4>
-										</div>
-									</div>
-								</div>
-							</div>
-                            {% endfor %}
-
-                        {% for movie in top_rated %}
-                            <div class="col-md-4 col-sm-6 top">
-								<div class="single-portfolio">
-									<div class="single-portfolio-img">
-										<img src="{{ movie.image.url }}" alt="portfolio" />
-										<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
-											<i class="icofont icofont-ui-play"></i>
-										</a>
-									</div>
-									<div class="portfolio-content">
-                                        <h2><a href="{% url 'movie_detail' movie.id %}">{{ movie.title | truncatechars:17 }}</a></h2>
 										<div class="review">
 											<div class="author-review">
 												{% if movie.vote_average > 9 %}

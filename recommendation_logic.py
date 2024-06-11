@@ -72,6 +72,11 @@ def recommend_movies4(movie_title):
     return list(top5_rec['id'])
 
 
+def imdb_top_n(top_n):
+    top_20_movies_imdb = movies_.nlargest(top_n, 'weighted_rating')
+    return list(top_20_movies_imdb['id'])
+
+
 def get_movie_detail(movie_id):
     result = final_movies[final_movies['id'] == movie_id]
     if not result.empty:
@@ -97,10 +102,13 @@ def get_actor_id_by_name(name):
 
 
 def fetch_actor_profile(actor_id):
-    response = requests.get(
-        f"https://api.themoviedb.org/3/person/{actor_id}/images?api_key=2646356451a5c6c0d4606b0ccb8a0b0a&language=en-US")
-    actor_image = response.json()['profiles'][0]['file_path']
-    return "https://image.tmdb.org/t/p/w500/" + actor_image
+    try:
+        response = requests.get(
+            f"https://api.themoviedb.org/3/person/{actor_id}/images?api_key=2646356451a5c6c0d4606b0ccb8a0b0a&language=en-US")
+        actor_image = response.json()['profiles'][0]['file_path']
+        return "https://image.tmdb.org/t/p/w500/" + actor_image
+    except:
+        print("Error while getting actor image")
 
 # mytest = recommend_movies4('Spider-Man')
 # print(fetch_poster(mytest[0]))

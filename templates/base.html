@@ -53,7 +53,7 @@
                                 <li><a href="{% url 'profile' %}">Profile</a></li>
                                 <li><a href="{% url 'logout' %}">Logout</a></li>
                             {% else %}
-                                <li><a class="login-popup" href="{% url 'login' %}">Login</a></li>
+                                <li><a href="{% url 'login' %}">Login</a></li>
                             {% endif %}
 						</ul>
 					</div>
@@ -63,7 +63,7 @@
                             <ul id="primary-menu">
                                 <li><a class="active" href="{% url 'home' %}">Home</a></li>
                                 <li><a href="{% url 'profile' %}">Movies</a></li>
-                                <li><a href="top-movies.html">Top Movies</a></li>
+                                <li><a href="{% url 'top_imdb_movies' %}">Top Movies</a></li>
 								<li><a href="#">Pages <i class="icofont icofont-simple-down"></i></a>
 									<ul>
 										<li><a href="blog-details.html">Blog Details</a></li>
@@ -330,11 +330,19 @@
 				</div>
 			</div>
 		</div><!-- header section end -->
+        
+        
 		
         {% block content %}
         
         {% endblock content %}
 		
+        <div class="container m-3">
+            <div class="row m-3">
+                
+            </div>
+        </div>
+        
 		<!-- footer section start -->
 		<footer class="footer">
 			<div class="container">
@@ -342,17 +350,15 @@
                     <div class="col-lg-3 col-sm-6">
 						<div class="widget">
 							<img src="{% static 'assets/img/logo.png' %}" alt="about" />
-							<p>7th Harley Place, London W1G 8LZ United Kingdom</p>
-							<h6><span>Call us: </span>(+880) 111 222 3456</h6>
+							
 						</div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
 						<div class="widget">
-							<h4>Legal</h4>
+							<h4>Movies</h4>
 							<ul>
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-								<li><a href="#">Security</a></li>
+                                <li><a href="{% url 'home' %}">Home</a></li>
+								<li><a href="{% url 'top_imdb_movies' %}">Top Rated</a></li>
 							</ul>
 						</div>
                     </div>
@@ -360,21 +366,23 @@
 						<div class="widget">
 							<h4>Account</h4>
 							<ul>
-								<li><a href="#">My Account</a></li>
-								<li><a href="#">Watchlist</a></li>
-								<li><a href="#">Collections</a></li>
-								<li><a href="#">User Guide</a></li>
+                                {% if user.is_authenticated %}
+								<li><a href="{% url 'profile' %}">Profile</a></li>
+								<li><a href="{% url 'logout' %}">Logout</a></li>
+                                {% else %}
+								<li><a href="{% url 'login' %}">Log In</a></li>
+								<li><a href="{% url 'signup' %}">Register</a></li>
+                                {% endif %}
 							</ul>
 						</div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
 						<div class="widget">
-							<h4>Newsletter</h4>
-							<p>Subscribe to our newsletter system now to get latest news from us.</p>
-							<form action="#">
-								<input type="text" placeholder="Enter your email.."/>
-								<button>SUBSCRIBE NOW</button>
-							</form>
+							<h4>Contact Us</h4>
+							<ul>
+								<li>Call us: (+90) 537 794 4478</li>
+								<li>Email: 190290622@firat.edu.tr</li>
+							</ul>
 						</div>
                     </div>
 				</div>
@@ -404,6 +412,7 @@
             function login() {
                 document.getElementById("login-form").submit();
             }
+            
         </script>
 		<script src="{% static 'assets/js/jquery.min.js' %}"></script>
 		<!-- Bootstrap JS -->
@@ -418,6 +427,7 @@
 		<script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
 		<!-- main JS -->
 		<script src="{% static 'assets/js/main.js' %}"></script>
+        {% block script %} {% endblock script %}
 	</body>
 
 </html>

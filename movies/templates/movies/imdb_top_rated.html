@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+<div class="row flexbox-center">
+    <div class="mt-5">
+
+</div>
+</div>
+
+<div class="container mt-3">
+<div class="row flexbox-center">
+    <div class="mt-3">
+
+</div>
+</div>
+
+</div>
+
+		<section class="portfolio-area pt-60">
+			<div class="container">
+				<div class="row flexbox-center">
+					<div class="col-lg-8 text-center text-lg-left">
+					    <div class="section-title">
+							<h1><i class="icofont icofont-movie"></i> IMDB TOP {{ object_list | length }} RATED MOVIES</h1>
+						</div>
+					</div>
+					<div class="col-lg-4 text-center text-lg-right">
+					    <div class="portfolio-menu">
+
+						</div>
+					</div>
+				</div>
+				<hr />
+				<div class="row portfolio-item">
+                    {% for movie in object_list %}
+					<div class="col-lg-3 col-md-4 col-sm-6">
+						<div class="single-portfolio">
+							<div class="single-portfolio-img">
+								<img src="{{ movie.image.url }}" alt="portfolio" />
+								<a href="https://www.youtube.com/watch?v=RZXnugbhw_4" class="popup-youtube">
+									<i class="icofont icofont-ui-play"></i>
+								</a>
+							</div>
+							<div class="portfolio-content">
+								<h2><a href="{% url 'movie_detail' movie.id %}">{{ movie.title | truncatechars:13 }}</a></h2>
+								<div class="review">
+									<div class="author-review">
+												{% if movie.vote_average > 9 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 8 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 6 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 4 %}
+                                            <i class="icofont icofont-star"></i>
+                                            <i class="icofont icofont-star"></i>
+                                        {% elif movie.vote_average > 2 %}
+                                            <i class="icofont icofont-star"></i>
+                                        {% endif %}
+											</div>
+									<h4>{{ movie.vote_count }}k voters</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+                    {% endfor %}
+				</div>
+			</div>
+		</section><!-- portfolio section end -->
+
+
+{% endblock content %}
